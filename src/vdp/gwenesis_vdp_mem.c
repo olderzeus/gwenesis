@@ -16,6 +16,8 @@ __contact__ = "https://github.com/bzhxx"
 __license__ = "GPLv3"
 
 */
+#include "build/config.h"
+#ifdef ENABLE_EMULATOR_MD
 
 #include <stdint.h>
 #include <stdio.h>
@@ -62,8 +64,8 @@ void vdpm_log(const char *subs, const char *fmt, ...) {
 
 
 #if GNW_TARGET_MARIO != 0 | GNW_TARGET_ZELDA != 0
-  extern uint8_t emulator_framebuffer[1024*64];
-  unsigned char* VRAM = &emulator_framebuffer[0];
+  static uint8_t vram[1024*64];
+  unsigned char* VRAM = vram;
 #else
   unsigned char VRAM[VRAM_MAX_SIZE];
 #endif
@@ -1031,3 +1033,4 @@ void gwenesis_vdp_mem_load_state() {
   hvcounter_latched = saveGwenesisStateGet(state, "hvcounter_latched");
   hint_pending = saveGwenesisStateGet(state, "hint_pending");
 }
+#endif

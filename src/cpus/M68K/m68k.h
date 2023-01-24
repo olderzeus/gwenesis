@@ -153,7 +153,7 @@
 
 #if GNW_TARGET_MARIO != 0 | GNW_TARGET_ZELDA != 0
 
-	extern unsigned char *ROM_DATA;
+	extern const unsigned char *ROM_DATA;
 	extern unsigned char *M68K_RAM;
 #else
 
